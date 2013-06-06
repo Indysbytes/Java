@@ -1,25 +1,17 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.indy.testcalc;
 
 /**
- *
- * @author indy
+ * Provides the addition operation.
+ * 
  */
-public class AddOperation implements Operation {
-
-    private final int val;
+public class AddOperation extends MathOperation {
 
     public AddOperation(int val) {
-        this.val = val;
+        super(val);
     }
 
-
     @Override
-    public int doOperation(int operand){
-
-        return val+operand;
+    public int doOperation(int operand) {
+        return operand + val;
     }
 }

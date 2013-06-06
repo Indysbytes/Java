@@ -6,8 +6,10 @@ import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
 /**
- *
- * @author indy
+ * Implements the calculation as directed by the instructions submitted.
+ * The operations are performed in the order they are read from the file.
+ * It can be refactored to change the order here by employing a helper class.
+ * 
  */
 public class CalculatorServiceImpl implements CalculatorService {
     private final String DELIM = " ";
@@ -22,19 +24,23 @@ public class CalculatorServiceImpl implements CalculatorService {
         Integer result = null;
 
         // determine all operations described in instructions
-        List<Operation> operations = initialiseOperations(instructions);
+        List<MathOperation> operations = initialiseOperations(instructions);
 
-        // find and remove the apply operation
-        int pos = operations.size()-1;
-        Operation applyOperation = operations.get(pos);
-        int initial = applyOperation.doOperation(0);
-        
-        result = doCalculation(operations.subList(0, pos), initial);
+        // find the apply value and remove the apply operation, it is assumed apply is always the last instruction submitted.
+        int applyValue = ((MathOperation)operations.remove(operations.size()-1)).getVal();
+
+        result = doCalculation(operations, applyValue);
+
         return result;
     }
 
-    private List<Operation>  initialiseOperations(List<String> instructions) {
-        List<Operation> operations = new LinkedList<>();
+    /**
+     * Convert the instructions into operations
+     * @param instructions the submitted instructions
+     * @return the list of operations, a linked list is used to preserve the order.
+     */
+    private List<MathOperation>  initialiseOperations(List<String> instructions) {
+        List<MathOperation> operations = new LinkedList<>();
         StringTokenizer st = null;
         String instructionType;
         String valString;
@@ -77,11 +83,18 @@ public class CalculatorServiceImpl implements CalculatorService {
         return operations;
     }
 
-    private int doCalculation(List<Operation> operations, int initial) {
-        for (Operation operation : operations) {
-            initial = operation.doOperation(initial);
+    private int doCalculation(List<MathOperation> operations, int initial) {
+        int result = initial;
+        try {
+            for (Operation operation : operations) {
+                result = operation.doOperation(result);
+            }
         }
-        return initial;
+        catch (ArithmeticException ae) {
+            System.out.println("Unable to perform arithmetic : "+ ae.getMessage());
+            throw new IllegalArgumentException(ae);
+        }
+        return result;
     }
 
 }

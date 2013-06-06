@@ -1,18 +1,13 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.indy.testcalc;
 
 /**
+ * Provides the multiplication operation.
  *
- * @author indy
  */
-class MultiplyOperation implements Operation {
-    private final int val;
+class MultiplyOperation extends MathOperation{
 
     public MultiplyOperation(int val) {
-        this.val = val;
+        super(val);
     }
 
     @Override

@@ -92,6 +92,17 @@ public class CalculatorServiceImplTest {
         assertTrue("Should produce 8 (24/3)", actual.equals(expected));
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void divisionByZeroShouldThrowException() {
+        // given
+        List<String> instructions = new ArrayList<>();
+        instructions.add("divide 0");
+        instructions.add("apply 24");
+
+        // when
+        calculatorService.performInstruction(instructions);
+    }
+
     @Test
     public void compoundAddSub() {
         // given
@@ -151,8 +162,18 @@ public class CalculatorServiceImplTest {
         instructions.add("");
 
         // when
-        Integer actual = calculatorService.performInstruction(instructions);
+        calculatorService.performInstruction(instructions);
 
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowExceptionForBadNumber() {
+        // given
+        List<String> instructions = new ArrayList<>();
+        instructions.add("apply -");
+
+        // when
+        calculatorService.performInstruction(instructions);
     }
 
 }

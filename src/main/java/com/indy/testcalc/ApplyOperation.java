@@ -1,20 +1,16 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.indy.testcalc;
 
 /**
+ * Provides the apply operation.
+ * This is a special case as the implied intention is to keep this
+ * as though it is an operation.
  *
- * @author indy
  */
-public class ApplyOperation implements Operation {
-
-    private final int val;
+public class ApplyOperation extends MathOperation {
 
 
     public ApplyOperation(int val) {
-        this.val = val;
+        super(val);
     }
 
     @Override
