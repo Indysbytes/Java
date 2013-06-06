@@ -15,9 +15,8 @@ import java.util.List;
  * 
  */
 public class FileReader {
-    final static Charset ENCODING = StandardCharsets.UTF_8;
+    public final static Charset ENCODING = StandardCharsets.UTF_8;
     public static final String EMPTY_LINE = "";
-
 
    /**
     * Reads lines from the file pointed to by the fileName value. The list is cleared of any empty lines
@@ -34,7 +33,4 @@ public class FileReader {
 
         return instructions;
     }
-
-
-
 }

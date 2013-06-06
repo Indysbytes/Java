@@ -13,15 +13,14 @@ public abstract class MathOperation implements Operation {
         this.val = val;
     }
 
-    
-
     @Override
     public abstract int doOperation(int operand);
 
+    /**
+     * Returns the value this class was initialise with.
+     * @return
+     */
     public int getVal() {
         return val;
     }
-
-
-
 }

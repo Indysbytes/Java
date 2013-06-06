@@ -29,6 +29,7 @@ import java.util.logging.Logger;
  * I did not use DI or use third party software like Spring I did not think it was warranted however I am happy
  * use it to demonstrate it if required.
  * I wanted to use as little code/third party software as possible.
+ * The tests are in the src/test/java directory.
  *
  * How to run the app.
  * I have used the assembly pluggin so you can run this from the cmd line with Maven.
@@ -47,10 +48,9 @@ import java.util.logging.Logger;
  * 
  *
  */
-public class CalculatorApp
-{
-    public static void main( String[] args )
-    {
+public class CalculatorApp{
+    
+    public static void main( String[] args )   {
         System.out.println( "----------------------------------------------------------" );
         try {
             System.out.println( "Reading file" );
