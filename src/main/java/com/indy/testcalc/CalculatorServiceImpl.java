@@ -27,6 +27,12 @@ public class CalculatorServiceImpl implements CalculatorService {
         init();
     }
 
+    /**
+     * Performs the calculation by following the instructions passed in by instructions.
+     * 
+     * @param instructions String of operations to perform
+     * @return Integer which is the result of performing the operations.
+     */
     @Override
     public Integer performInstruction(List<String> instructions) {
         Integer result = null;
